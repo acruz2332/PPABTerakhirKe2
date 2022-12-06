@@ -11,31 +11,44 @@
     app:cardCornerRadius="12dp"
     app:cardElevation="8dp"
     android:id="@+id/card_hasil">
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tampil Nama"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:id="@+id/tv_nama"></TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tampil Matkul"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:id="@+id/tv_matkul"></TextView>
-    </LinearLayout>
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tampil Nama"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:id="@+id/tv_nama"></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tampil Matkul"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:id="@+id/tv_matkul"></TextView>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/hapus"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_hapus"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="15dp"></ImageView>
+    </RelativeLayout>
+
+
 
 </androidx.cardview.widget.CardView>

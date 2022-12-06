@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/akbar/AndroidStudioProjects/PPABTerakhir/app/src/main/res/drawable/ic_hapus.xml" value="0.145" />
         <entry key="..\:/Users/akbar/AndroidStudioProjects/PPABTerakhir/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Users/akbar/AndroidStudioProjects/PPABTerakhir/app/src/main/res/layout/activity_tambah.xml" value="0.15260416666666668" />
-        <entry key="..\:/Users/akbar/AndroidStudioProjects/PPABTerakhir/app/src/main/res/layout/layout_item.xml" value="0.165625" />
+        <entry key="..\:/Users/akbar/AndroidStudioProjects/PPABTerakhir/app/src/main/res/layout/layout_item.xml" value="0.264" />
       </map>
     </option>
   </component>

@@ -1,15 +1,23 @@
 package com.ppab.ppabterakhir;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -38,7 +46,49 @@ public class AdapterMahasiswa extends RecyclerView.Adapter<AdapterMahasiswa.MyVi
         final ModelMahasiswa data = mList.get(position);
         holder.tv_nama.setText("Nama : " + data.getNama());
         holder.tv_matkul.setText("Matkul : " + data.getMatkul());
+        holder.btn_hapus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        database.child("Mahasiswa").child(data.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(activity, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(activity, "Data GAGAL dihapus", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).setMessage("Apakah yakin ingin menghapus ? " + data.getNama());
+                builder.show();
+            }
+        });
 
+        holder.card_hasil.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                FragmentManager manager = ((AppCompatActivity)activity).getSupportFragmentManager();
+                DialogForm dialog = new DialogForm(
+                        data.getNama(),
+                        data.getMatkul(),
+                        data.getKey(),
+                        "Ubah"
+                );
+                dialog.show(manager, "Form");
+                return true;
+            }
+        });
 
     }
 
@@ -50,10 +100,12 @@ public class AdapterMahasiswa extends RecyclerView.Adapter<AdapterMahasiswa.MyVi
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nama, tv_matkul;
         CardView card_hasil;
+        ImageView btn_hapus;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_nama = itemView.findViewById(R.id.tv_nama);
             tv_matkul = itemView.findViewById(R.id.tv_matkul);
+            btn_hapus = itemView.findViewById(R.id.hapus);
             card_hasil = itemView.findViewById(R.id.card_hasil);
         }
     }
